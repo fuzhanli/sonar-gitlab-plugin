@@ -19,12 +19,7 @@
  */
 package com.talanlabs.sonar.plugins.gitlab;
 
-import com.talanlabs.sonar.plugins.gitlab.freemarker.EmojiSeverityTemplateMethodModelEx;
-import com.talanlabs.sonar.plugins.gitlab.freemarker.ImageSeverityTemplateMethodModelEx;
-import com.talanlabs.sonar.plugins.gitlab.freemarker.IssueCountTemplateMethodModelEx;
-import com.talanlabs.sonar.plugins.gitlab.freemarker.IssuesTemplateMethodModelEx;
-import com.talanlabs.sonar.plugins.gitlab.freemarker.PrintTemplateMethodModelEx;
-import com.talanlabs.sonar.plugins.gitlab.freemarker.RuleLinkTemplateMethodModelEx;
+import com.talanlabs.sonar.plugins.gitlab.freemarker.*;
 import com.talanlabs.sonar.plugins.gitlab.models.ReportIssue;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -116,6 +111,10 @@ public abstract class AbstractCommentBuilder {
         Arrays.stream(Severity.values()).forEach(severity -> root.put(severity.name(), severity));
         root.put("issueCount", new IssueCountTemplateMethodModelEx(reportIssues));
         root.put("issues", new IssuesTemplateMethodModelEx(reportIssues));
+        //增加根据类型统计方法
+        root.put("issueTypeCount", new IssueTypeCountTemplateMethodModelEx(reportIssues));
+        //增加根据类型查询
+        root.put("issuesByType", new IssuesTypeTemplateMethodModelEx(reportIssues));
         root.put("print", new PrintTemplateMethodModelEx(markDownUtils));
         root.put("emojiSeverity", new EmojiSeverityTemplateMethodModelEx(markDownUtils));
         root.put("imageSeverity", new ImageSeverityTemplateMethodModelEx(markDownUtils));
