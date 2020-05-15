@@ -86,6 +86,11 @@ public class GitLabPluginConfiguration {
     }
 
     @CheckForNull
+    public String redmineUserToken() {
+        return configuration.get(GitLabPlugin.REDMINE_TOKEN).orElse(null);
+    }
+
+    @CheckForNull
     public String userToken() {
         return configuration.get(GitLabPlugin.GITLAB_USER_TOKEN).orElse(null);
     }
@@ -95,12 +100,20 @@ public class GitLabPluginConfiguration {
     }
 
     @CheckForNull
+    public String redmineUrl() {
+        return configuration.get(GitLabPlugin.REDMINE_URL).orElseGet(null);
+    }
+
+    @CheckForNull
     public String url() {
         return configuration.get(GitLabPlugin.GITLAB_URL).orElseGet(null);
     }
-
     public boolean ignoreCertificate() {
         return configuration.getBoolean(GitLabPlugin.GITLAB_IGNORE_CERT).orElse(false);
+    }
+
+    public boolean redmineEnabled() {
+        return configuration.getBoolean(GitLabPlugin.REDMINE_ENABLED).orElse(true);
     }
 
     public int maxGlobalIssues() {

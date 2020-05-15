@@ -75,6 +75,10 @@ public class GitLabPlugin implements Plugin {
     public static final String V3_API_VERSION = "v3";
     public static final String V4_API_VERSION = "v4";
 
+    public static final String REDMINE_ENABLED = "sonar.redmine.enabled";
+    public static final String REDMINE_URL = "sonar.redmine.url";
+    public static final String REDMINE_TOKEN = "sonar.redmine.token";
+
     public static List<PropertyDefinition> definitions() {
         return Arrays
                 .asList(PropertyDefinition.builder(GITLAB_URL).name("GitLab url").description("URL to access GitLab.").category(CATEGORY).subCategory(SUBCATEGORY).defaultValue("https://gitlab.com")
@@ -166,8 +170,16 @@ public class GitLabPlugin implements Plugin {
                         PropertyDefinition.builder(GITLAB_CI_MERGE_REQUEST_IID).name("Merge Request IID").description("The IID of the merge request if it’s pipelines for merge requests")
                                 .category(CATEGORY).subCategory(SUBCATEGORY).type(PropertyType.INTEGER)
                                 .defaultValue(String.valueOf(-1))
-                                .index(35).build()
-
+                                .index(35).build(),
+                        PropertyDefinition.builder(REDMINE_URL).name("Redmine address").description("Redmine address")
+                                .category(CATEGORY).subCategory(SUBCATEGORY).defaultValue("https://redmine.org")
+                                .index(36).build(),
+                        PropertyDefinition.builder(REDMINE_TOKEN).name("Redmine User Token").description("Redmine user token ").category(CATEGORY).subCategory(SUBCATEGORY)
+                                .type(PropertyType.PASSWORD).index(37).onQualifiers(Qualifiers.PROJECT, Qualifiers.VIEW).build(),
+                        PropertyDefinition.builder(REDMINE_ENABLED).name("Enable Redmine Publisher").description("enable push comment to redmine")
+                                .category(CATEGORY).subCategory(SUBCATEGORY).type(PropertyType.BOOLEAN)
+                                .defaultValue(String.valueOf(true))
+                                .index(37).build()
                 );
     }
 

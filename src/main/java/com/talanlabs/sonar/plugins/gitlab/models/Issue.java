@@ -34,6 +34,16 @@ public class Issue {
     private Severity severity;
     private boolean newIssue;
 
+    public Rule getRule() {
+        return rule;
+    }
+
+    public void setRule(Rule rule) {
+        this.rule = rule;
+    }
+
+    private Rule rule;
+
     private Issue() {
         // Nothing
     }
@@ -73,6 +83,7 @@ public class Issue {
     public boolean isNewIssue() {
         return newIssue;
     }
+
 
     public static class Builder {
 

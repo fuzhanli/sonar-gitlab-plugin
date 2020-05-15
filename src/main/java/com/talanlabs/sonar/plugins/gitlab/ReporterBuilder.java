@@ -19,6 +19,7 @@
  */
 package com.talanlabs.sonar.plugins.gitlab;
 
+import com.alibaba.fastjson.JSON;
 import com.talanlabs.sonar.plugins.gitlab.models.*;
 import org.sonar.api.ExtensionPoint;
 import org.sonar.api.batch.AnalysisMode;
@@ -129,8 +130,9 @@ public class ReporterBuilder {
             Rule rule = null;
             if (gitLabPluginConfiguration.loadRule()) {
                 rule = sonarFacade.getRule(issue.getRuleKey());
+                issue.setRule(rule);
             }
-
+            LOG.debug(JSON.toJSONString(issue));
             report.process(issue, rule, revision, url, src, ruleLink, reportedInline);
         }
     }

@@ -48,9 +48,9 @@ public class GitLabApiV4Wrapper implements IGitLabApiWrapper {
 
     private static final String COMMIT_CONTEXT = "sonarqube";
 
-    private final GitLabPluginConfiguration config;
-    private GitLabAPI gitLabAPIV4;
-    private GitLabProject gitLabProject;
+    protected final GitLabPluginConfiguration config;
+    protected GitLabAPI gitLabAPIV4;
+    protected GitLabProject gitLabProject;
     private Map<String, List<GitLabCommitComments>> commitCommentPerRevision;
     private Map<String, Map<String, Set<Line>>> patchPositionByFile;
 
@@ -326,7 +326,7 @@ public class GitLabApiV4Wrapper implements IGitLabApiWrapper {
         }
     }
 
-    private String getFirstCommitSHA() {
+    protected String getFirstCommitSHA() {
         return config.commitSHA() != null && !config.commitSHA().isEmpty() ? config.commitSHA().get(0) : null;
     }
 

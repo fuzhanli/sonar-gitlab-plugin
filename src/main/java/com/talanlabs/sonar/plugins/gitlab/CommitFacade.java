@@ -63,7 +63,9 @@ public class CommitFacade {
 
         if (GitLabPlugin.V3_API_VERSION.equals(gitLabPluginConfiguration.apiVersion())) {
             this.gitLabWrapper = new GitLabApiV3Wrapper(gitLabPluginConfiguration);
-        } else if (GitLabPlugin.V4_API_VERSION.equals(gitLabPluginConfiguration.apiVersion())) {
+        } else if(gitLabPluginConfiguration.redmineEnabled() && GitLabPlugin.V4_API_VERSION.equals(gitLabPluginConfiguration.apiVersion())){
+            this.gitLabWrapper = new GitLabApiV4WithReadmineWrapper(gitLabPluginConfiguration);
+        }else if (GitLabPlugin.V4_API_VERSION.equals(gitLabPluginConfiguration.apiVersion())) {
             this.gitLabWrapper = new GitLabApiV4Wrapper(gitLabPluginConfiguration);
         }
     }
@@ -166,6 +168,7 @@ public class CommitFacade {
     }
 
     public void addGlobalComment(String comment) {
+        LOG.info("addGlobalComment...");
         gitLabWrapper.addGlobalComment(comment);
     }
 

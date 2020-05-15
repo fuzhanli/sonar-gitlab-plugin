@@ -65,7 +65,7 @@ public class CommitPublishPostJobTest {
         commitFacade = Mockito.mock(CommitFacade.class);
         settings = new MapSettings(new PropertyDefinitions(PropertyDefinition.builder(CoreProperties.SERVER_BASE_URL).name("Server base URL")
                 .description("HTTP URL of this SonarQube server, such as <i>http://yourhost.yourdomain/sonar</i>. This value is used i.e. to create links in emails.")
-                .category(CoreProperties.CATEGORY_GENERAL).defaultValue("http://localhost:9000").build()).addComponents(GitLabPlugin.definitions()));
+                .category(CoreProperties.CATEGORY_GENERAL).defaultValue("http://192.168.101.99:9001").build()).addComponents(GitLabPlugin.definitions()));
         settings.setProperty(CoreProperties.SERVER_BASE_URL, "http://myserver");
         settings.setProperty(GitLabPlugin.GITLAB_COMMIT_SHA, "abc123");
         settings.setProperty("sonar.projectBaseDir", "projectBaseDir");
