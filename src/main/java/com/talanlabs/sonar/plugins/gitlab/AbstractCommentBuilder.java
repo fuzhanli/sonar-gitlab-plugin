@@ -116,8 +116,12 @@ public abstract class AbstractCommentBuilder {
         //增加根据类型查询
         root.put("issuesByType", new IssuesTypeTemplateMethodModelEx(reportIssues));
         root.put("print", new PrintTemplateMethodModelEx(markDownUtils));
+        //按照图片方式打印issue
+        root.put("printByImage", new PrintByImageTemplateMethodModelEx(markDownUtils));
         root.put("emojiSeverity", new EmojiSeverityTemplateMethodModelEx(markDownUtils));
         root.put("imageSeverity", new ImageSeverityTemplateMethodModelEx(markDownUtils));
+        //获取ruleType对应的图片
+        root.put("imageRuleType", new ImageRuleTypeTemplateMethodModelEx(markDownUtils));
         root.put("ruleLink", new RuleLinkTemplateMethodModelEx(gitLabPluginConfiguration));
         Arrays.stream(Common.RuleType.values()).forEach(type -> root.put(type.name(), type.name()));
         return root;

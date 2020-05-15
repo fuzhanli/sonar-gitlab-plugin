@@ -52,6 +52,10 @@ public class MarkDownUtils {
         return "![" + severity + "](" + IMAGES_ROOT_URL + "severity-" + severity.name().toLowerCase() + ".png)";
     }
 
+    public String getImage(String fullName){
+        return "![" + fullName + "](" + IMAGES_ROOT_URL + fullName + ".png)";
+    }
+
     public String getImageForType(String type) {
         return "![" + type + "](" + IMAGES_ROOT_URL + "type-" + type.toLowerCase() + ".png)";
     }
@@ -67,6 +71,21 @@ public class MarkDownUtils {
             }
         }
         sb.append(" ").append("[:blue_book:](").append(ruleLink).append(")");
+        return sb.toString();
+    }
+
+    public Object printIssueByImage(Severity severity, String message, String ruleLink, String url, String componentKey) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getImageForSeverity(severity)).append(" ");
+        if (url != null) {
+            sb.append("[").append(message).append("]").append("(").append(url).append(")");
+        } else {
+            sb.append(message);
+            if (componentKey != null) {
+                sb.append(" ").append("(").append(componentKey).append(")");
+            }
+        }
+        sb.append(" ").append(getImage("rule")).append("[查看规则](").append(ruleLink).append(")");
         return sb.toString();
     }
 }
