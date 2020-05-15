@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
 @ScannerSide
 public class MarkDownUtils {
 
-    private static final String IMAGES_ROOT_URL = "https://github.com/gabrie-allaigre/sonar-gitlab-plugin/raw/master/images/";
+    private static final String IMAGES_ROOT_URL = "https://github.com/fuzhanli/sonar-gitlab-plugin/raw/master/images/";
 
     public String getEmojiForSeverity(Severity severity) {
         switch (severity) {
@@ -52,6 +52,9 @@ public class MarkDownUtils {
         return "![" + severity + "](" + IMAGES_ROOT_URL + "severity-" + severity.name().toLowerCase() + ".png)";
     }
 
+    public String getImageForType(String type) {
+        return "![" + type + "](" + IMAGES_ROOT_URL + "type-" + type.toLowerCase() + ".png)";
+    }
     public String printIssue(Severity severity, String message, String ruleLink, @Nullable String url, @Nullable String componentKey) {
         StringBuilder sb = new StringBuilder();
         sb.append(getEmojiForSeverity(severity)).append(" ");
