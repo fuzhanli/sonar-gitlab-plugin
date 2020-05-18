@@ -104,6 +104,7 @@ public class GitLabApiV4WithReadmineWrapper extends GitLabApiV4Wrapper {
             }
             if(issue==null){
                 LOG.error("找不到issue={}!",id);
+                continue;
             }
             LOG.info("推送redmine: issue={}...",id);
 
