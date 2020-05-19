@@ -34,6 +34,7 @@ public class GlobalCommentBuilder extends AbstractCommentBuilder {
     private final String author;
     private final QualityGate qualityGate;
     private final Reporter reporter;
+    private String projectKey;
 
     public GlobalCommentBuilder(GitLabPluginConfiguration gitLabPluginConfiguration, String author, QualityGate qualityGate, Reporter reporter, MarkDownUtils markDownUtils,
                                 AnalysisMode analysisMode) {
@@ -43,11 +44,21 @@ public class GlobalCommentBuilder extends AbstractCommentBuilder {
         this.qualityGate = qualityGate;
         this.reporter = reporter;
     }
+    public GlobalCommentBuilder(GitLabPluginConfiguration gitLabPluginConfiguration, String author, QualityGate qualityGate, Reporter reporter, MarkDownUtils markDownUtils,
+                                AnalysisMode analysisMode,String projectKey) {
+        super(gitLabPluginConfiguration, gitLabPluginConfiguration.commitSHA().get(0), reporter.getReportIssues(), markDownUtils, analysisMode, "global", gitLabPluginConfiguration.globalTemplate());
+
+        this.author = author;
+        this.qualityGate = qualityGate;
+        this.reporter = reporter;
+        this.projectKey = projectKey;
+    }
 
     @Override
     protected Map<String, Object> createContext() {
         Map<String, Object> root = super.createContext();
         root.put("author", author);
+        root.put("projectKey", this.projectKey);
         Arrays.stream(QualityGate.Status.values()).forEach(status -> root.put(status.name(), status));
         root.put("qualityGate", createQualityGateContext());
         return root;

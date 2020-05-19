@@ -45,6 +45,7 @@ public class GitLabPlugin implements Plugin {
     public static final String GITLAB_PROJECT_ID = "sonar.gitlab.project_id";
     public static final String GITLAB_COMMIT_SHA = "sonar.gitlab.commit_sha";
     public static final String GITLAB_REF_NAME = "sonar.gitlab.ref_name";
+    public static final String SONAR_BRANCH_NAME = "sonar.project.ref_name";
     public static final String GITLAB_GLOBAL_TEMPLATE = "sonar.gitlab.global_template";
     public static final String GITLAB_INLINE_TEMPLATE = "sonar.gitlab.inline_template";
     public static final String GITLAB_COMMENT_NO_ISSUE = "sonar.gitlab.comment_no_issue";
@@ -179,7 +180,10 @@ public class GitLabPlugin implements Plugin {
                         PropertyDefinition.builder(REDMINE_ENABLED).name("Enable Redmine Publisher").description("enable push comment to redmine")
                                 .category(CATEGORY).subCategory(SUBCATEGORY).type(PropertyType.BOOLEAN)
                                 .defaultValue(String.valueOf(true))
-                                .index(37).build()
+                                .index(37).build(),
+                        PropertyDefinition.builder(SONAR_BRANCH_NAME).name("Sonar Branch Name").description("Sonar project branch name.").category(CATEGORY).subCategory(SUBCATEGORY)
+                                .defaultValue("master")
+                                .index(38).hidden().build()
                 );
     }
 

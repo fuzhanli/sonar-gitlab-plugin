@@ -218,10 +218,8 @@ public class SonarFacade {
     }
 
     public List<Issue> getNewIssues() {
-        Properties reportTaskProps = readReportTaskProperties();
-
-        String projectKey = reportTaskProps.getProperty("projectKey");
-        String refName = gitLabPluginConfiguration.refName();
+        String projectKey = getProjectKey();
+        String refName = gitLabPluginConfiguration.sonarBranchName();
         int page = 1;
         Integer nbPage = null;
 
@@ -234,6 +232,11 @@ public class SonarFacade {
             page++;
         }
         return issues;
+    }
+
+    public String getProjectKey(){
+        Properties reportTaskProps = readReportTaskProperties();
+        return reportTaskProps.getProperty("projectKey");
     }
 
     private Issues.SearchWsResponse searchIssues(String componentKey, String branch, int page) {

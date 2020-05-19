@@ -194,7 +194,7 @@ public class ReporterBuilder {
 
     private void updateGlobalComments(QualityGate qualityGate, Reporter report) {
         String username = commitFacade.getUsernameForRevision(gitLabPluginConfiguration.commitSHA().get(0));
-        String body = new GlobalCommentBuilder(gitLabPluginConfiguration, username, qualityGate, report, markDownUtils, analysisMode).buildForMarkdown();
+        String body = new GlobalCommentBuilder(gitLabPluginConfiguration, username, qualityGate, report, markDownUtils, analysisMode,sonarFacade.getProjectKey()).buildForMarkdown();
         if (body != null && !body.trim().isEmpty()) {
             commitFacade.addGlobalComment(body);
         }

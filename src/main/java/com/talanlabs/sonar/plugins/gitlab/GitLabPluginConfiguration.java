@@ -84,7 +84,10 @@ public class GitLabPluginConfiguration {
     public String refName() {
         return configuration.get(GitLabPlugin.GITLAB_REF_NAME).orElse(null);
     }
-
+    @CheckForNull
+    public String sonarBranchName() {
+        return configuration.get(GitLabPlugin.SONAR_BRANCH_NAME).orElse(null);
+    }
     @CheckForNull
     public String redmineUserToken() {
         return configuration.get(GitLabPlugin.REDMINE_TOKEN).orElse(null);
