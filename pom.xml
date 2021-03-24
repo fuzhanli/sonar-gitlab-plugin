@@ -14,6 +14,7 @@
   <name>SonarQube :: GitLab Redmine Plugin</name>
   <description>GitLab and Redmine Plugin for Reporting</description>
   <packaging>sonar-plugin</packaging>
+  <!--去掉parent信息,可以使用mvn assembly:assembly -e -DskipTests 快速构建-->
   <!--<packaging>jar</packaging>-->
   <url>https://github.com/fuzhanli/sonar-gitlab-plugin</url>
   <properties>
@@ -124,7 +125,6 @@
           <target>1.8</target>
         </configuration>
       </plugin>
-
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>

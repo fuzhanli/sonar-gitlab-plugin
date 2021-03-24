@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
 @ScannerSide
 public class MarkDownUtils {
 
-    private static final String IMAGES_ROOT_URL = "https://github.com/fuzhanli/sonar-gitlab-plugin/raw/master/images/";
+    private static final String IMAGES_ROOT_URL = "http://dl.egova.com.cn:8080/media/sonar/images/";
 
     public String getEmojiForSeverity(Severity severity) {
         switch (severity) {

@@ -7,7 +7,13 @@ Inspired by https://github.com/SonarCommunity/sonar-github
 
 # Current version
 
-## Version 4.1.0-SNAPSHOT
+## Version 4.1.`-SNAPSHOT
+
+> 打包方法
+```$xslt
+1. mvn assembly:assembly -e -DskipTests
+2. Plugins/sonar-packaging/sonar-packaging:sonar-plugin
+```
 
 **Only SonarQube < 7.7, because preview mode is removed**
 
